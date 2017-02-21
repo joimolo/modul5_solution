@@ -1,0 +1,102 @@
+<div class="container">
+  <h2 id="menu-categories-title" class="text-center">Sign up to our newsletter</h2>
+  <div>
+    Please provide some details so that we can send you the latesting happenings about your favourite dish.
+    <form name="signupForm" id="signupF" class="form-horizontal" novalidate>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 col-xs-3 control-label" for="firstName">First Name: </label>
+        <div class="col-sm-6 col-xs-6">
+          <input type="text" 
+            name="firstName" placeholder="First Name"
+            ng-model="signupCtrl.firstName" minlength=4
+            ng-maxlength=10 required>
+        </div>
+      </div> 
+      <span class="help-block" ng-if="signupForm.firstName.$error.required && signupForm.firstName.$touched">
+        First name is required
+      </span>
+      <span class="help-block" ng-if="signupForm.firstName.$error.minlength && signupForm.firstName.$touched">
+          Your name must be at least 4 characters long
+      </span>
+      <span class="help-block" ng-if="signupForm.firstName.$error.maxlength && signupForm.firstName.$touched">
+          Your name must not be longer than 10 characters
+      </span>
+      <br>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 col-xs-3 control-label" for="lastName">Last Name: </label>
+        <div class="col-sm-6 col-xs-6">
+          <input type="text" 
+            name="lastName" placeholder="Last Name"
+            ng-model="signupCtrl.lastName"
+            minlength=3 ng-maxlength="10" required>
+          </div>
+      </div>
+      <span class="help-block" ng-if="signupForm.lastName.$error.required && signupForm.lastName.$touched">
+            Last name is requires
+      </span>
+      <span class="help-block" ng-if="signupForm.lastName.$error.minlength && signupForm.lastName.$touched">
+            Your name must be at least 4 characters long
+      </span>
+      <span class="help-block" ng-if="signupForm.lastName.$error.maxlength && signupForm.lastName.$touched">
+            Your name must not be longer than 10 characters
+      </span>
+      <br>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 col-xs-3 control-label" for="email">E-mail address: </label>
+        <div  class="col-sm-6 col-xs-6" >
+          <input type="email" 
+            name="email"
+            ng-model="signupCtrl.email"
+            placeholder="E-mail"
+            required>
+          </div>
+      </div>
+      <span class="help-block" ng-if="signupForm.email.$invalid && signupForm.email.$touched">
+            Must be a valid email address: handle@domain format
+      </span>
+      <br>
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 col-xs-3 control-label" for="phone">Phone Number: </label>
+        <div  class="col-sm-6 col-xs-6">
+          <input type="text"
+            name="phone"
+            ng-model="signupCtrl.phone"
+            placeholder="Ph: ####-###-###"
+            pattern="(\d{4})-(\d{3})-(\d{3})">
+          </div>
+      </div>
+      <span class="help-block" ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">
+          Mobile phone must be in the format ###-###-####.
+      </span>
+      <br>
+
+      <div class="form-group form-group-sm">
+        <label class="col-sm-3 col-xs-3 control-label" for="favourite">Favourite Dish: </label>
+        <div  class="col-sm-6 col-xs-6">
+          <input type="text"
+            name="favourite"
+            ng-model="signupCtrl.favourite"
+            placeholder="Favourite menu item"
+            minlength="2"
+            pattern="[a-zA-Z]{1,2}\d{1,2}"
+            required>
+          </div>
+      </div>
+      <span class="help-block" ng-if="signupForm.favourite.$error.required && signupForm.favourite.$touched">
+            You must pick a favourite dish
+      </span>
+      <span class="help-block" ng-if="signupForm.favourite.$error.pattern && signupForm.favourite.$touched">
+            Dishes are a combination of one or two letters and one or two digits (eg. C3 - A11 - CM4 - SR15)
+      </span>
+      <span ng-if="!signupCtrl.dishExists">No such menu number exists</span>
+      <br>
+
+      <input  type="submit" class="btn btn-primary btn-md" 
+              value="Sign Up" ng-disabled="signupForm.$invalid" 
+              ng-click="signupCtrl.signup()">
+    </form>
+    <div ng-if='signupCtrl.message'>{{signupCtrl.message}}</div>
+  </div>
+</div>
